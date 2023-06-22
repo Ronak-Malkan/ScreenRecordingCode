@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Screen Record Code</title>
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&family=Space+Mono:wght@400;700&family=VT323&display=swap');
+      :root{
+         color-scheme: dark;
+      }
+      h1 {
+         text-align: center;
+         font-family: 'VT323', monospace;
+         font-size: 37px;
+         margin-top: 40px;
+      }
+      p{
+         margin-top: 30px;
+         padding: 0px 70px;
+         font-family: 'Space Mono', monospace;
+         font-size: 20px;
+         font-weight: 400;
+         text-align: justify;
+      }
+      ol {
+         margin-top: 20px;
+         padding: 0px 80px;
+         padding-left: 120px;
+         font-family: 'Space Mono', monospace;
+         font-size: 18px;
+         font-weight: 400;
+         text-align: justify;
+      }
+      ul {
+         margin-top: 10px;
+         margin-bottom: 10px;
+         font-family: 'Space Mono', monospace;
+         font-size: 18px;
+         font-weight: 400;
+         text-align: justify;
+      }
+      li {
+         margin: 5px 0;
+      }
+      kbd {
+         border-radius: 2px;
+         padding: 0.3px 2px;
+         border: 1px solid white;
+         padding: 0px 2px;
+         font-size: 15px;
+      }
+      .code {
+         display: inline-block;
+         position: relative;
+         margin-top: 25px;
+         margin-left: 70px;
+         padding: 20px 20px;
+         width: 60%;
+         border: 3px solid white;
+         border-radius: 7px;
+         font-family: 'Space Mono', monospace;
+         font-size: 16px;
+         font-weight: 400;
+      }
+      .code > div {
+         display: inline-block;
+         position: absolute;
+         top: 18px;
+         right: 18px;
+         padding: 5px 8px;
+         background-color: white;
+         color: black;
+         border-radius: 4px;
+         font-family: 'Space Mono', monospace;
+         font-size: 16px;
+         font-weight: 400;
+      }
+      .code > div:hover {
+         scale: 1.06;
+         cursor: pointer;
+      }
+   </style>
+</head>
+<body>
+   <h1>Screen Record Code</h1>
+   <p>This page contains javascript code which, when run in console, helps in recording screen. It's simple really.. </p>
+   <ol>
+      <li>The javascript code is given below.</li>
+      <li>Copy that code.</li>
+      <li>Open the console, in any browser, in any tab, and paste the code in the console.</li>
+      <li>Press <kbd>Enter</kbd> and close the console.</li>
+      <li>
+         To Start the recording you have to type <kbd>S</kbd> / <kbd>s</kbd>, then another two characters depending on the options you want.
+      </li>
+   </ol>
+   <p>Options: </p>
+   <ol>
+      <li>After typing <kbd>S</kbd>, you can select the frame rate for your recording:</li>
+      <ul>
+         <li>Type <kbd>V</kbd> / <kbd>v</kbd>, to set the frame rate to 10 frames/s.</li>
+         <li>Type <kbd>L</kbd> / <kbd>l</kbd>, to set the frame rate to 20 frames/s.</li>
+         <li>Type <kbd>M</kbd> / <kbd>m</kbd>, to set the frame rate to 30 frames/s.</li>
+         <li>Type <kbd>H</kbd> / <kbd>h</kbd>, to set the frame rate to 40 frames/s.</li>
+      </ul>
+      <li>
+         After selecting the frame rate, you can select the resolution for your recording:
+      </li>
+      <ul>
+         <li>Type <kbd>V</kbd> / <kbd>v</kbd>, to set the resolution to 360p.</li>
+         <li>Type <kbd>L</kbd> / <kbd>l</kbd>, to set the resolution to 480p.</li>
+         <li>Type <kbd>M</kbd> / <kbd>m</kbd>, to set the resolution to 720p.</li>
+         <li>Type <kbd>H</kbd> / <kbd>h</kbd>, to set the resolution to 1080p.</li>
+         <li>Type <kbd>B</kbd> / <kbd>b</kbd>, to set the resolution to 4k.</li>
+      </ul>
+      <li>
+         To select default options for frame rate and resolution, type <kbd>D</kbd> / <kbd>d</kbd> immediately after typing <kbd>S</kbd>. Default option sets frame rate to 30 and resolution to 720p.
+      </li>
+      <li>NOTE: If the selected option is not supported by your device, option will be kept as close to the selected value as possible.</li>
+   </ol>
+   <p>Code: </p>
+   <div class="code">
+      document.addEventListener("keydown", handleKeyDown);<br/><br/>
+      let recorder;<br/>
+      let framerate;<br/>
+      let start = 0;<br/>
+      let widthR;<br/>
+      let heightR;<br/><br/>
+
+      async function handleKeyDown(e){ <br/>
+      &nbsp;&nbsp;if(e.key == 's' || e.key == 'S'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;start = 1; <br/>
+      &nbsp;&nbsp;} <br/><br/>
+      &nbsp;&nbsp;if(start == 1){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;if(e.key == 'd' || e.key == 'D'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 30; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 1280; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 720; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'v' || e.key == 'V') { <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 10; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 2; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'l' || e.key == 'L'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 20; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 2; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'm' || e.key == 'M'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 30; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 2; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'h' || e.key == 'H'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 40; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 2; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;} <br/><br/>
+      &nbsp;&nbsp;else if(start == 2){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;if(e.key == 'v' || e.key == 'V') { <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 640; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 360; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'l' || e.key == 'L'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 853; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 480; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'm' || e.key == 'M'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 1280; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 720; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'h' || e.key == 'H'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 1920; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 1080; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;else if(e.key == 'b' || e.key == 'B'){ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;widthR = 3840; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heightR = 2160; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 3; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;} <br/><br/>
+      &nbsp;&nbsp;if(start == 3){ <br/> 
+      &nbsp;&nbsp;&nbsp;&nbsp;let stream = await navigator.mediaDevices.getDisplayMedia({ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;video: {frameRate: framerate, width: widthR, height: heightR}, <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;audio: true, <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;}); <br/><br/>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;recorder = new MediaRecorder(stream); <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;recorder.start(); <br/><br/>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;recorder.ondataavailable = e => { <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var aElem = window.document.createElement('a'); <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aElem.href = window.URL.createObjectURL(e.data); <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aElem.download = 'screen'; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.body.appendChild(aElem); <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aElem.click(); <br/>    
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.body.removeChild(aElem); <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = 0; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;framerate = 30; <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+      &nbsp;&nbsp;} <br/>
+      }
+      <div id="copy">Copy</div>
+   </div>
+   <script>
+
+      const code = `
+         document.addEventListener("keydown", handleKeyDown);
+         let recorder;
+         let framerate;
+         let start = 0;
+         let widthR;
+         let heightR;
+
+         async function handleKeyDown(e){
+            if(e.key == 's' || e.key == 'S'){
+               start = 1;
+            }
+            if(start == 1){
+               if(e.key == 'd' || e.key == 'D'){
+                  framerate = 30;
+                  widthR = 1280;
+                  heightR = 720;
+                  start = 3;
+               }
+               else if(e.key == 'v' || e.key == 'V') {
+                  framerate = 10;
+                  start = 2;
+               }
+               else if(e.key == 'l' || e.key == 'L'){
+                  framerate = 20;
+                  start = 2;
+               } 
+               else if(e.key == 'm' || e.key == 'M'){
+                  framerate = 30;
+                  start = 2;
+               } 
+               else if(e.key == 'h' || e.key == 'H'){
+                  framerate = 40;
+                  start = 2;
+               }
+            }
+            else if(start == 2){
+               if(e.key == 'v' || e.key == 'V') {
+                  widthR = 640;
+                  heightR = 360;
+                  start = 3;
+               }
+               else if(e.key == 'l' || e.key == 'L'){
+                  widthR = 853;
+                  heightR = 480;
+                  start = 3;
+               }
+               else if(e.key == 'm' || e.key == 'M'){
+                  widthR = 1280;
+                  heightR = 720;
+                  start = 3;
+               } 
+               else if(e.key == 'h' || e.key == 'H'){
+                  widthR = 1920;
+                  heightR = 1080;
+                  start = 3;
+               }
+               else if(e.key == 'b' || e.key == 'B'){
+                  widthR = 3840;
+                  heightR = 2160;
+                  start = 3;
+               }
+            }
+            if(start == 3){
+               let stream = await navigator.mediaDevices.getDisplayMedia({
+                  video: {frameRate: framerate, width: widthR, height: heightR},
+                  audio: true,
+               });
+
+               recorder = new MediaRecorder(stream);
+               recorder.start();
+
+               recorder.ondataavailable = e => {
+                  var aElem = window.document.createElement('a');
+                  aElem.href = window.URL.createObjectURL(e.data);
+                  aElem.download = 'screen';        
+                  document.body.appendChild(aElem);
+                  aElem.click();        
+                  document.body.removeChild(aElem);
+                  start = 0;
+                  framerate = 30;
+               }
+            }
+         }
+      `;
+
+
+
+
+      const copyButton = document.querySelector("#copy");
+
+      copyButton.addEventListener("click", copyToClipBoard);
+      async function copyToClipBoard(){
+         try{
+            let copy = navigator.clipboard.writeText(code);
+            copyButton.textContent = "Copied!";
+         }
+         catch (error){
+            copyButton.textContent = "Error! Copy Manually";
+         }
+      }
+   </script>
+</body>
+</html>
